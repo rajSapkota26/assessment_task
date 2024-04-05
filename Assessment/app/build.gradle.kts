@@ -98,6 +98,4 @@ dependencies {
 
     implementation("com.google.code.gson:gson:2.10.1")
 
-    //chart
-    implementation ("com.github.MahmoudIbrahim3:android-compose-charts:1.2.2")
 }

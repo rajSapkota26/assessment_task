@@ -94,6 +94,7 @@ fun AddScreen(
             ) {
                 Column(modifier= Modifier
                     .fillMaxSize()
+                    .padding(8.dp)
                     .imePadding()
                     .verticalScroll(
                         rememberScrollState()

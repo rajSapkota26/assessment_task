@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun LabelTextCompo(
     title:String,
+    fontWeight: FontWeight = FontWeight.Bold,
     fontSize:TextUnit = 16.sp,
     textAlign: TextAlign?= TextAlign.Start
 ){

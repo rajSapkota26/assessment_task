@@ -39,6 +39,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.assessment.chart.ChartEntity
+import com.example.assessment.chart.LineChart
 import com.example.assessment.feature.dashboard.dto.IAndORecord
 import com.example.assessment.feature.dashboard.event.DashEvent
 import com.example.assessment.feature.dashboard.state.DashState
@@ -48,8 +50,6 @@ import com.example.assessment.uiComponent.DialogMessage
 import com.example.assessment.uiComponent.LabelTextCompo
 import com.example.assessment.utils.navigation.NavigationScreen
 import com.example.samplesetting.component.ProgressScreen
-import com.mahmoud.composecharts.linechart.LineChart
-import com.mahmoud.composecharts.linechart.LineChartEntity
 import timber.log.Timber
 
 @Composable
@@ -85,15 +85,6 @@ private fun MainContent(
             paddingStart = 0.dp,
             paddingEnd = 0.dp,
         ) {
-//            val lineChartData = listOf(
-//                LineChartEntity(1500f, "A"),
-//                LineChartEntity(2000f, "B"),
-//                LineChartEntity(5000f, "C"),
-//                LineChartEntity(3500f, "D"),
-//                LineChartEntity(50000f, "E")
-//            )
-//            val verticalAxisValues =
-//                listOf(500f, 1000f, 2000f, 5000f, 10000f, 25000f, 50000f, 100000f)
 
             Column(modifier = Modifier.fillMaxSize()) {
                 DashTopBar(onAddClick = {
@@ -103,10 +94,6 @@ private fun MainContent(
                     onEvent(DashEvent.OnSettingDialogOpen)
 
                 }, state = uiState)
-//                LineChart(
-//                    lineChartData = lineChartData,
-//                    verticalAxisValues = verticalAxisValues
-//                )
                 Column(modifier = Modifier.padding(8.dp)) {
                     CategoryCompo(state = uiState)
                     TransactionList(onItemClick = { data ->
@@ -187,16 +174,16 @@ fun AllRecords(allRecords: List<IAndORecord>, onClick: (IAndORecord) -> Unit) {
                         it.title,
                         fontWeight = FontWeight.Bold,
                         fontSize = 16.sp,
-                        modifier = Modifier.fillMaxWidth(0.6f),
+                        modifier = Modifier.fillMaxWidth(0.75f),
                     )
                     Text(
                         it.tag,
                         fontWeight = FontWeight.Bold,
                         fontSize = 16.sp,
-                        modifier = Modifier.fillMaxWidth(0.6f),
+                        modifier = Modifier.fillMaxWidth(0.75f),
                     )
                 }
-                LabelTextCompo(title = "${it.amount}")
+                LabelTextCompo(title = "${it.amount}", fontWeight = FontWeight.Normal)
 
             }
             Spacer(modifier = Modifier.height(4.dp))
@@ -299,7 +286,7 @@ fun CategoryCompo(state: DashState) {
 fun DashTopBar(onAddClick: () -> Unit, onSettingClick: () -> Unit, state: DashState) {
     TopAppBar(
         title = {
-            Row {
+            Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     "Balance ",
                     fontWeight = FontWeight.Normal,
