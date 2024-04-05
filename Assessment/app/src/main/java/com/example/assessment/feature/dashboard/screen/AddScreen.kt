@@ -51,7 +51,7 @@ fun AddScreen(
 
     val title = remember { mutableStateOf(data?.title ?: "") }
     val titleError = remember { mutableStateOf("") }
-    val amount = remember { mutableStateOf("${data?.amount ?: 0}") }
+    val amount = remember { mutableStateOf("${data?.amount ?: ""}") }
     val amountError = remember { mutableStateOf("") }
     val note = remember { mutableStateOf(data?.note ?: "just spend") }
     val noteError = remember { mutableStateOf("") }

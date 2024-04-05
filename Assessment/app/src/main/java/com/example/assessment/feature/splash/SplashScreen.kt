@@ -68,7 +68,9 @@ fun SplashScreen(navController: NavHostController) {
                     FilledButton(
                         label = "Proceed",
                     ) {
+                        navController.popBackStack()
                         navController.navigate(NavigationScreen.loginScreen)
+                        navController.clearBackStack(NavigationScreen.splashScreen)
                     }
                 }
 

@@ -48,6 +48,8 @@ import com.example.assessment.uiComponent.DialogMessage
 import com.example.assessment.uiComponent.LabelTextCompo
 import com.example.assessment.utils.navigation.NavigationScreen
 import com.example.samplesetting.component.ProgressScreen
+import com.mahmoud.composecharts.linechart.LineChart
+import com.mahmoud.composecharts.linechart.LineChartEntity
 import timber.log.Timber
 
 @Composable
@@ -83,6 +85,16 @@ private fun MainContent(
             paddingStart = 0.dp,
             paddingEnd = 0.dp,
         ) {
+//            val lineChartData = listOf(
+//                LineChartEntity(1500f, "A"),
+//                LineChartEntity(2000f, "B"),
+//                LineChartEntity(5000f, "C"),
+//                LineChartEntity(3500f, "D"),
+//                LineChartEntity(50000f, "E")
+//            )
+//            val verticalAxisValues =
+//                listOf(500f, 1000f, 2000f, 5000f, 10000f, 25000f, 50000f, 100000f)
+
             Column(modifier = Modifier.fillMaxSize()) {
                 DashTopBar(onAddClick = {
                     onEvent(DashEvent.OnTransactionAddDialogOpen(false))
@@ -91,6 +103,10 @@ private fun MainContent(
                     onEvent(DashEvent.OnSettingDialogOpen)
 
                 }, state = uiState)
+//                LineChart(
+//                    lineChartData = lineChartData,
+//                    verticalAxisValues = verticalAxisValues
+//                )
                 Column(modifier = Modifier.padding(8.dp)) {
                     CategoryCompo(state = uiState)
                     TransactionList(onItemClick = { data ->
@@ -148,13 +164,13 @@ fun AllRecords(allRecords: List<IAndORecord>, onClick: (IAndORecord) -> Unit) {
                         onClick(it)
                     }
                     .fillMaxWidth(1f)
-                    .background(MaterialTheme.colorScheme.inversePrimary)
+                    .background(if (it.transactionType == "Expense") MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.secondaryContainer)
                     .padding(8.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
                 Icon(
-                    imageVector = if (it.transactionType == "Expense") Icons.Filled.ArrowCircleUp else Icons.Filled.ArrowCircleDown,
+                    imageVector = if (it.transactionType == "Expense") Icons.Filled.ArrowCircleDown else Icons.Filled.ArrowCircleUp,
                     contentDescription = null,
                     modifier = Modifier
                         .padding(end = 4.dp),
@@ -200,8 +216,12 @@ fun CategoryCompo(state: DashState) {
         Box(
             modifier = Modifier
                 .fillMaxWidth(0.5f)
-                .background(MaterialTheme.colorScheme.secondary)
-                .border(1.dp, MaterialTheme.colorScheme.secondary, RoundedCornerShape(4.dp))
+                .background(MaterialTheme.colorScheme.secondaryContainer)
+                .border(
+                    1.dp,
+                    MaterialTheme.colorScheme.secondaryContainer,
+                    RoundedCornerShape(4.dp)
+                )
         ) {
             Column(modifier = Modifier.padding(4.dp)) {
                 Spacer(modifier = Modifier.height(8.dp))
@@ -279,21 +299,38 @@ fun CategoryCompo(state: DashState) {
 fun DashTopBar(onAddClick: () -> Unit, onSettingClick: () -> Unit, state: DashState) {
     TopAppBar(
         title = {
-            LabelTextCompo(
-                title = "Balance Rs:",
-                subTitle = "${state.totalBalance ?: 0}",
-                fontSize = 18.sp
-            )
+            Row {
+                Text(
+                    "Balance ",
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 18.sp,
+                    modifier = Modifier.padding(start = 8.dp, top = 4.dp),
+                )
+                Text(
+                    "Rs:${state.totalBalance ?: 0}",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 24.sp,
+                    modifier = Modifier.padding(start = 8.dp, top = 4.dp),
+                )
+            }
 
 
         },
         actions = {
             IconButton(onClick = { onAddClick() }) {
-                Icon(Icons.Filled.AddCircle, contentDescription = "add", tint = MaterialTheme.colorScheme.onPrimary)
+                Icon(
+                    Icons.Filled.AddCircle,
+                    contentDescription = "add",
+                    tint = MaterialTheme.colorScheme.onPrimary
+                )
             }
 
             IconButton(onClick = { onSettingClick() }) {
-                Icon(Icons.Filled.Settings, contentDescription = "setting", tint = MaterialTheme.colorScheme.onPrimary)
+                Icon(
+                    Icons.Filled.Settings,
+                    contentDescription = "setting",
+                    tint = MaterialTheme.colorScheme.onPrimary
+                )
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
