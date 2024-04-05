@@ -3,7 +3,7 @@ package com.example.assessment.feature.dashboard.dto
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.assessment.utils.DateAndTimeUtils
+import com.example.assessment.utils.dateTime.DateAndTimeUtils
 import java.io.Serializable
 
 

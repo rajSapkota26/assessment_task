@@ -1,4 +1,4 @@
-package com.example.assessment.utils
+package com.example.assessment.utils.dateTime
 
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat

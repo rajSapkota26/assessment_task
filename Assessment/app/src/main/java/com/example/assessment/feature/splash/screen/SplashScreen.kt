@@ -1,4 +1,4 @@
-package com.example.assessment.feature.splash
+package com.example.assessment.feature.splash.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

@@ -1,4 +1,4 @@
-package com.example.assessment.feature.register.otp
+package com.example.assessment.feature.register.screen.otp
 
 import android.os.CountDownTimer
 import androidx.compose.foundation.Image

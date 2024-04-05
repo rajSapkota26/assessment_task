@@ -10,13 +10,13 @@ import androidx.navigation.compose.composable
 import com.example.assessment.feature.dashboard.screen.DashBoardScreen
 import com.example.assessment.feature.dashboard.vm.DashBoardVM
 import com.example.assessment.feature.dashboard.vm.DashBoardVMFactory
-import com.example.assessment.feature.login.LoginScreen
+import com.example.assessment.feature.login.screen.LoginScreen
 import com.example.assessment.feature.login.vm.LoginVM
 import com.example.assessment.feature.login.vm.LoginVMFactory
-import com.example.assessment.feature.register.CreateAccountScreen
+import com.example.assessment.feature.register.screen.CreateAccountScreen
 import com.example.assessment.feature.register.vm.RegisterVM
 import com.example.assessment.feature.register.vm.RegisterVMFactory
-import com.example.assessment.feature.splash.SplashScreen
+import com.example.assessment.feature.splash.screen.SplashScreen
 import com.example.assessment.service_layer.repository.RoomRepository
 
 @Composable
