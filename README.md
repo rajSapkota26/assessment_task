@@ -1,6 +1,6 @@
 # assessment_task
 
-<br/> 
+
 # Built With
   -Kotlin
   -Coroutines
@@ -13,7 +13,7 @@
   -Jetpack Navigation
   -SharedPreference
   -Material Components for Android
-<br/>
+
 
 ## Package Structure  
     
@@ -22,42 +22,42 @@
     |    ├── generic              # Base Response class for error, loading and success handle
     |    ├── navigation           # nav graph and all screen route name
     |    ├── session              # user login session
-    |    ├── dateTime             # date Time utility classes
+    |    └── dateTime             # date Time utility classes
     ├── service_laayer            # For data handling.
-    │   ├── database              # Database Instance
-    |   ├── repository            # Implementation of dao  
-    |   |── service  
-    |   |── dao                   # Data Access Object for Room 
+    │    ├── database             # Database Instance
+    |    ├── repository           # Implementation of dao  
+    |    |── service  
+    |    └── dao                  # Data Access Object for Room 
     |
     ├── chart                     # Graph model
     |
     ├── uiComponent               # Reuseable composable funtions
     |
     ├── ui  
-    │   ├── theme                # theme releted class like color, shape, typography
+    │   └── theme                # theme releted class like color, shape, typography
     ├── feature                  # All feature inside app
     │   ├── splash               # Splash root folder
     |   │   ├── screen           # Splash view
-    |   │   └── vm               # 
+    |   │   ├── vm               # 
     |   │   ├── event            #
-    |   │   ├── dto              #      
+    |   │   └── dto              #      
     │   ├── Dashboard            # Dashboard root folder
     |   │   ├── screen           # ui part of dashboard
-    |   │   └── vm               # viewmodel
+    |   │   ├── vm               # viewmodel
     |   │   ├── event            # all event triggred on dashboard
     |   │   ├── state            # state of dashboard 
-    |   │   ├── dto              # entity or dto      
+    |   │   └── dto              # entity or dto      
     │   ├── login                # Login  root folder
     |   │   ├── screen           # 
-    |   │   └── vm               # 
+    |   │   ├── vm               # 
     |   │   ├── event            # 
     |   │   ├── state            # 
-    |   │   ├── dto              #     
+    |   │   └── dto              #     
     │   ├── register             # Register/Create Account  root folder
     |   │   ├── screen           # 
-    |   │   │   ├── Otp          #     
-    |   │   └── vm               #
+    |   │   │   └── Otp          #     
+    |   │   ├── vm               #
     |   │   ├── event            # 
     |   │   ├── state            #
-    |   │   ├── dto              #    
-    <br/>
+    |   │   └── dto              #    
+
