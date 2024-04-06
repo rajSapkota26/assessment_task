@@ -1,6 +1,6 @@
 package com.example.assessment.chart
 
-
+import androidx.compose.foundation.layout.*
 import android.graphics.Paint
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.aspectRatio
@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.tooling.preview.Preview
@@ -191,5 +192,73 @@ private fun DefaultPreview() {
             lineChartData = lineChartData,
             verticalAxisValues = listOf(0.0f, 100.0f, 200.0f, 300.0f, 400.0f, 500.0f),
         )
+    }
+}
+
+
+
+
+@Composable
+fun IncomeExpenseGraph(
+    income: Float,
+    expense: Float,
+    modifier: Modifier = Modifier,
+    graphColor: Color = MaterialTheme.colorScheme.secondaryContainer,
+    backgroundColor: Color = MaterialTheme.colorScheme.onSecondary
+) {
+    val total = income + expense
+    val incomeAngle = 360 * (income / total)
+    val expenseAngle = 360 * (expense / total)
+
+    Box(modifier = modifier) {
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            val center = Offset(size.width / 2, size.height / 2)
+            val radius = size.minDimension / 2 - 16 // Adjust padding here
+
+            // Draw background circle
+            drawCircle(color = backgroundColor, radius = radius)
+
+            // Draw income arc
+            drawArc(
+                color = graphColor,
+                startAngle = -90f,
+                sweepAngle = incomeAngle,
+                useCenter = true,
+                topLeft = Offset(center.x - radius, center.y - radius),
+                size = Size(radius * 2, radius * 2),
+                style = Stroke(width = 8.dp.toPx())
+            )
+
+            // Draw expense arc
+            drawArc(
+                color = Color(0xFF26C7DB), // You can change color for expenses
+                startAngle = incomeAngle - 90f,
+                sweepAngle = expenseAngle,
+                useCenter = true,
+                topLeft = Offset(center.x - radius, center.y - radius),
+                size = Size(radius * 2, radius * 2),
+                style = Stroke(width = 8.dp.toPx())
+            )
+        }
+    }
+}
+@Composable
+fun IncomeExpenseScreen() {
+    Column {
+        IncomeExpenseGraph(
+            income = 1500f,
+            expense = 1000f,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        )
+    }
+}
+
+@Preview
+@Composable
+fun PreviewIncomeExpenseScreen() {
+    AssessmentTheme {
+        IncomeExpenseScreen()
     }
 }

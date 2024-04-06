@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -28,7 +29,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -39,8 +39,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.assessment.chart.ChartEntity
-import com.example.assessment.chart.LineChart
+import com.example.assessment.chart.IncomeExpenseGraph
 import com.example.assessment.feature.dashboard.dto.IAndORecord
 import com.example.assessment.feature.dashboard.event.DashEvent
 import com.example.assessment.feature.dashboard.state.DashState
@@ -195,6 +194,21 @@ fun AllRecords(allRecords: List<IAndORecord>, onClick: (IAndORecord) -> Unit) {
 
 @Composable
 fun CategoryCompo(state: DashState) {
+    if (state.totalIncome?.isNotEmpty() == true || state.totalExpense?.isNotEmpty() == true) {
+        Box(modifier = Modifier.fillMaxWidth()) {
+            Column(modifier = Modifier.size(150.dp).align(Alignment.Center),
+                horizontalAlignment = Alignment.CenterHorizontally) {
+                IncomeExpenseGraph(
+                    income = if (state.totalIncome?.isNotEmpty() == true) state.totalIncome.toFloat() else 0f,
+                    expense =  if (state.totalExpense?.isNotEmpty() == true) state.totalExpense.toFloat() else 0f,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                )
+            }
+        }
+
+    }
     Row(
         modifier = Modifier
             .fillMaxWidth(1f)
