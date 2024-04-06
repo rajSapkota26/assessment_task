@@ -17,7 +17,7 @@
 
 ## Package Structure  
     
-    com.example.assessment        # Root Package
+    com.example.assessment         # Root Package
     ├── utils                     # Utility classes
     |    ├── generic              # Base Response class for error, loading and success handle
     |    ├── navigation           # nav graph and all screen route name
@@ -27,7 +27,7 @@
     │   ├── database              # Database Instance
     |   ├── repository            # Implementation of dao  
     |   |── service  
-    |       |── dao               # Data Access Object for Room 
+    |   |── dao                   # Data Access Object for Room 
     |
     ├── chart                     # Graph model
     |
